@@ -1,5 +1,5 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>KARTHIKEYAN.K</H3> 
+<H3>212223230101</H3> 
 <H3>EX. NO.1</H3>
 <H3>DATE</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
@@ -38,11 +38,88 @@ STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
 TYPE YOUR CODE HERE
+```
+import pandas as pd
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+
+data = pd.read_csv("Churn_Modelling.csv")
+print(data.head())
+print(data.tail())
+
+X=data.iloc[:,:-1].values
+print(X)
+
+y=data.iloc[:,-1].values
+print(y)
+
+data.info()
+
+print("Missing Values: \n ",data.isnull().sum())
+
+print("Duplicate values:\n ")
+print(data.duplicated())
+
+data.describe()
+
+data = data.drop(['Surname', 'Geography','Gender'], axis=1)
+data.head()
+
+scaler=MinMaxScaler()
+df1=pd.DataFrame(scaler.fit_transform(data))
+print("Normalized data \n" , df1)
+
+X = data.drop('Exited', axis=1)  
+y = data['Exited'] 
+
+X_train ,X_test ,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=42)
+print("Training data")
+print(X_train)
+print(y_train)
+
+print("Testing data")
+print(X_test)
+print(y_test)
+print("Length of X_test: ", len(X_test))
+
+
+```
 
 
 ## OUTPUT:
 SHOW YOUR OUTPUT HERE
 
+df.head()
+![alt text](image-2.png)
+
+df.tail()
+![alt text](image-3.png)
+
+X & Y values
+
+![alt text](image-12.png)
+
+Missing values
+
+![alt text](image-7.png)
+
+Duplicate values
+
+![alt text](image-8.png)
+
+Normalized dataset
+
+![alt text](image-9.png)
+
+Training values of x and y
+
+![alt text](image-10.png)
+
+Testing values of x and y
+
+![alt text](image-11.png)
 
 ## RESULT:
 Thus, Implementation of Data Preprocessing is done in python  using a data set downloaded from Kaggle.

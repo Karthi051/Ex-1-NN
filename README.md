@@ -1,7 +1,7 @@
-<H3>KARTHIKEYAN.K</H3> 
-<H3>212223230101</H3> 
+<H3>ENTER YOUR NAME : SAKTHIVEL M</H3>
+<H3>ENTER YOUR REGISTER NO. : 212222240088</H3>
 <H3>EX. NO.1</H3>
-<H3>DATE</H3>
+<H3>DATE : 14/03/2025</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
@@ -37,89 +37,120 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
-```
+
+### IMPORT LIBRARIES : 
+
+```py
 import pandas as pd
 import io
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
-
-data = pd.read_csv("Churn_Modelling.csv")
-print(data.head())
-print(data.tail())
-
-X=data.iloc[:,:-1].values
-print(X)
-
-y=data.iloc[:,-1].values
-print(y)
-
-data.info()
-
-print("Missing Values: \n ",data.isnull().sum())
-
-print("Duplicate values:\n ")
-print(data.duplicated())
-
-data.describe()
-
-data = data.drop(['Surname', 'Geography','Gender'], axis=1)
-data.head()
-
-scaler=MinMaxScaler()
-df1=pd.DataFrame(scaler.fit_transform(data))
-print("Normalized data \n" , df1)
-
-X = data.drop('Exited', axis=1)  
-y = data['Exited'] 
-
-X_train ,X_test ,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=42)
-print("Training data")
-print(X_train)
-print(y_train)
-
-print("Testing data")
-print(X_test)
-print(y_test)
-print("Length of X_test: ", len(X_test))
-
-
+from scipy import stats
+import numpy as np
 ```
 
+### READ THE DATA: 
+```py
+df=pd.read_csv("Churn_Modelling.csv")
+```
+
+### CHECK DATA: 
+```py
+df.head()
+df.tail()
+df.columns
+```
+
+### CHECK THE MISSING DATA:
+```py
+df.isnull().sum()
+```
+
+### ASSIGNING X:
+```py
+X = df.iloc[:,:-1].values
+X
+```
+
+### ASSIGNING Y:
+```py
+Y = df.iloc[:,-1].values
+Y
+```
+
+### CHECK FOR OUTLIERS:
+```py
+df.describe()
+```
+
+### DROPPING STRING VALUES DATA FROM DATASET:
+```py
+data = df.drop(['Surname', 'Geography','Gender'], axis=1)
+```
+
+### CHECKING DATASETS AFTER DROPPING STRING VALUES DATA FROM DATASET:
+```py
+data.head()
+```
+
+### NORMALIE THE DATASET USING (MinMax Scaler):
+```py
+scaler=MinMaxScaler()
+df1=pd.DataFrame(scaler.fit_transform(data))
+print(df1)
+```
+
+### SPLIT THE DATASET:
+```py
+X=df.iloc[:,:-1].values
+Y=df.iloc[:,-1].values
+print(X)
+print(Y)
+```
+
+### TRAINING AND TESTING MODEL:
+```py
+X_train ,X_test ,Y_train,Y_test=train_test_split(X,Y,test_size=0.2)
+print("X_train\n")
+print(X_train)
+print("\nLenght of X_train ",len(X_train))
+print("\nX_test\n")
+print(X_test)
+print("\nLenght of X_test ",len(X_test))
+```
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
 
-df.head()
-![alt text](image-2.png)
+### DATA CHECKING:
 
-df.tail()
-![alt text](image-3.png)
+![DC](https://github.com/SivaChandranR07/Ex-1-NN/assets/113497395/4a9861dd-c08c-4c08-9218-df9d4e89c495)
 
-X & Y values
 
-![alt text](image-12.png)
+### MISSING DATA:
 
-Missing values
+![MD](https://github.com/SivaChandranR07/Ex-1-NN/assets/113497395/6260c60c-1bfc-4806-b778-b63481df25b1)
 
-![alt text](image-7.png)
+### DUPLICATES IDENTIFICATION:
+![DI](https://github.com/SivaChandranR07/Ex-1-NN/assets/113497395/1c6dadd3-fc7d-414e-8979-74363928147e)
 
-Duplicate values
+### VALUE OF Y:
+![VY](https://github.com/SivaChandranR07/Ex-1-NN/assets/113497395/89fe00c2-51f7-4fb9-944c-298329b291df)
 
-![alt text](image-8.png)
+### OUTLIERS:
+![outliers](https://github.com/SivaChandranR07/Ex-1-NN/assets/113497395/bb71d1ce-305d-4389-8c55-4d372cf89c07)
 
-Normalized dataset
+### CHECKING DATASET AFTER DROPPING STRING VALUES DATA FROM DATASET:
+![CD](https://github.com/SivaChandranR07/Ex-1-NN/assets/113497395/6978a892-4d84-45f7-a61f-d4da24af6537)
 
-![alt text](image-9.png)
+### NORMALIZE THE DATASET:
+![ND](https://github.com/SivaChandranR07/Ex-1-NN/assets/113497395/dd09c337-092e-44c9-9c06-3a49a265ce3b)
 
-Training values of x and y
+### SPLIT THE DATASET:
+![SD](https://github.com/SivaChandranR07/Ex-1-NN/assets/113497395/ef5e94d1-14f4-4841-9e05-94564d0a3c22)
 
-![alt text](image-10.png)
-
-Testing values of x and y
-
-![alt text](image-11.png)
+### TRAINING AND TESTING MODEL:
+![TAT](https://github.com/SivaChandranR07/Ex-1-NN/assets/113497395/2582cd4e-aaed-4610-97ed-91c3b8676e9f)
 
 ## RESULT:
 Thus, Implementation of Data Preprocessing is done in python  using a data set downloaded from Kaggle.
